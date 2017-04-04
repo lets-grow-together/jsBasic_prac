@@ -9,7 +9,7 @@ Javascript/jQuery 기초 스터디 실습
 git clone [url]
 git clone [url] [foldername]
 
-git clone https://github.com/lets-grow-together/jsBasic_prac.git jsBasic_prac
+git clone https://github.com/lets-grow-together/jsBasic_prac jsBasic_prac
 ```
 
 ## branch 명
