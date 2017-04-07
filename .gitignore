@@ -1,0 +1,5 @@
+# Mac OS X hidden files
+.DS_Store
+
+# Visual Studio Code Project files
+.vscode/
