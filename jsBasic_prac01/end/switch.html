@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        color 변수 값에 따라 아래와 같이 출력해 주세요.
+        "red" 또는 "FF0000"일 경우 "set red color.",
+        "green" 또는 "00FF00"일 경우 "set green color.",
+        "blue" 또는 "0000FF"일 경우 "set blue color."
+        그 외에는 "red, green, blue만 컬러 설정이 가능합니다."
+        */
+
+
+         var color =  prompt("변수 값에 따라 아래와 같이 출력해 주세요.");
+
+        switch(color) {
+
+            case "red" :
+            case "FF0000" :
+            document.write("set red color.<br>");
+            break;
+            case "green" :
+            case "00FF00" :
+            document.write("set green color.<br>");
+            break;
+            case "blue" :
+            case "0000FF" :
+            document.write("set blue color.<br>");
+            break;
+
+            default :
+            document.write("red, green, blue만 컬러 설정이 가능합니다.<br>");    
+         }      
+
+
+        /*
+        각 달에 따라 아래와 같이 출력해주세요.
+        입력한 달이 1일 경우 "1월은 31일이 있습니다.",
+        입력한 달이 2일 경우 "2월은 28일이 있습니다.",
+        ... (중략)
+        입력한 달이 12일 경우 "12월은 31일이 있습니다.",
+        입력한 달이 1~12가 아닐 경우 "1부터 12까지 올바른 달을 입력해 주세요."
+        */
+
+        
+
+      var month = window.prompt("각 달에 따라 아래와 같이 출력해주세요.");
+
+        switch(month) {
+
+            case "1" :
+            document.write("1월은 31일이 있습니다.<br>");
+            break;
+            case "2" :
+            document.write("2월은 28일이 있습니다.<br>");
+            break;
+            case "12" :
+            document.write("12월은 31일이 있습니다.<br>");
+            break;
+
+            default :
+            document.write("1부터 12까지 올바른 달을 입력해 주세요.<br>");
+         }               
+         
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        무인도 탈출 게임
+        1. '무인도에 도착했습니다' 출력
+        2. 두개의 1~6 까지의 임의의 숫자를 생성하고 출력
+        3. 숫자가 같지 않을 경우, 다시 임의의 숫자 생성
+        4. 같은 숫자가 나오거나, 같지 않은 숫자가 3번 연속으로 나오면 '무인도 탈출' 출력
+        */
+
+            document.write("무인도에 도착했습니다"); 
+
+          
+            var sameNum,differNum;
+            while (true) {
+                var num1 =  Math.floor( Math.random() * 6 ) + 1;  
+                var num2 =  Math.floor( Math.random() * 6 ) + 1; 
+                if(num1 == num2){
+                    sameNum ++;
+                    differNum=0;
+                }else{
+                    sameNum = 0;
+                    differNum++;
+                }
+                console.log(num1,num2);
+                if(sameNum == 3 || differNum==3){
+                    console.log('탈출');
+
+                    break;
+                }
+
+            }
+          
+        
+    </script>
+</body>
+</html>
