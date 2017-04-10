@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#gugudan1,#gugudan2{overflow-y:auto;min-height:100px;max-height:200px;margin:5px 0;padding:5px;border:1px solid gray;white-space:pre}
+	</style>
+</head>
+<body>
+	<h1>forfor</h1>
+	<ul>
+		<li>
+			구구단을 아래와 같이 출력해 주세요.<br>(출력해야 할 값들을 문자열에 담아 한 번만 출력해주세요.)<br><br>
+			2 * 1 = 2<br>
+			2 * 2 = 4<br>
+			... (중략)<br>
+			9 * 8 = 72<br>
+			9 * 9 = 81<br>
+			<button onclick="gugudan1()">과제확인</button>
+			<div id="gugudan1"></div>
+		</li>
+		<li>
+			구구단을 아래와 같이 출력해 주세요.<br>
+			(출력해야 할 값들을 문자열에 담아 한 번만 출력해주세요.)<br><br>
+			2 * 1 = 2	2 * 2 = 4	... (중략)	2 * 9 = 18<br>
+			3 * 1 = 3	3 * 2 = 6	... (중략)	3 * 9 = 27<br>
+			... (중략)<br>
+			9 * 1 = 9	9 * 2 = 18	... (중략)	9 * 9 = 81<br>
+			<button onclick="gugudan2()">과제확인</button>
+			<div id="gugudan2"></div>
+		</li>
+	</ul>
+
+	<script>
+		function gugudan1(){
+			/*
+			구구단을 아래와 같이 출력해 주세요.
+			(출력해야 할 값들을 문자열에 담아 한 번만 출력해주세요.)
+
+			2 * 1 = 2
+			2 * 2 = 4
+			... (중략)
+			9 * 8 = 72
+			9 * 9 = 81
+			*/
+
+			var result01 = "";
+			for(var i=2; i<=9; i++){
+				for(var j=1; j<=9; j++){
+					var text = i+' * '+j+' = '+(i*j);
+					result01 = result01 + text +'<br>';
+				}
+			}
+			document.getElementById('gugudan1').innerHTML = result01;
+		}
+
+		function gugudan2(){
+			/*
+			구구단을 아래와 같이 출력해 주세요.
+			(출력해야 할 값들을 문자열에 담아 한 번만 출력해주세요.)
+
+			2 * 1 = 2	2 * 2 = 4	... (중략)	2 * 9 = 18
+			3 * 1 = 3	3 * 2 = 6	... (중략)	3 * 9 = 27
+			... (중략)
+			9 * 1 = 9	9 * 2 = 18	... (중략)	9 * 9 = 81
+			*/
+
+			var result02 = "";
+			for(var i=2; i<=9; i++){
+				for(var j=1; j<=9; j++){
+					var text = i+' * '+j+' = '+(i*j);
+					result02 = result02 + text +'   ';
+				}
+				result02 = result02 + '<br>';
+			}
+			document.getElementById('gugudan2').innerHTML = result02;
+		}
+
+	</script>
+</body>
+</html>
