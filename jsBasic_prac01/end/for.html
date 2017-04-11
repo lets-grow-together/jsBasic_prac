@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        * { margin: 0px; padding: 0px; }
+        li {
+            display:-webkit-box;
+            -webkit-box-align: center;
+            -webkit-box-pack: center;
+            background-color: black;
+            width: 100px;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight: bold;
+            font-family: verdana,helvetica,arial,sans-serif;
+            color:#FFFFFF;
+        }
+        li.style1 { background-color: #FF0000; }
+        li.style2 { background-color: green; }
+        li.style3 { background-color: #0000FF; }
+    </style>
+</head>
+<body>
+    <ul id="listArea">
+        <!-- 리스트 영역 -->
+    </ul>
+    
+    <script>
+        /*
+        "자바스크립트 스터디"를 한 글자씩 출력해 주세요.
+        자
+        바
+        스
+        .
+        .
+        디
+        */
+        var str = '자바스크립트 스터디';
+
+
+
+        /*
+        10부터 30에서 짝수만 출력해주세요.
+        */
+
+
+        /*
+        ul안에 "data 1"부터 "data 12"까지의 글자를 가진 총 12개의 li를 생성해주세요.
+        각각의 li는 style1, style2, style3의 클래스를 순차적으로 적용해주세요.
+        */
+
+        // 아이디로 엘리먼트를 찾을 때: document.getElementById(아이디명)
+        // 엘리먼트 안에 html을 작성할 때: 엘리먼트.innerHTML = "작성할 내용";
+
+        /*
+        <li style="1">data 1</li>
+        <li style="2">data 2</li>
+        ...
+        <li style="3">data 12</li>
+        */
+
+        var target = document.getElementById('listArea');
+        target.innerHTML = '<li>테스트</li>';
+
+
+    </script>
+</body>
+</html>
