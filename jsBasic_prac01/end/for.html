@@ -40,12 +40,20 @@
         */
         var str = '자바스크립트 스터디';
 
+        for (var i = 0, length = str.length; i < length; i++) {
+            console.log(str.charAt(i));
+        }
 
 
         /*
         10부터 30에서 짝수만 출력해주세요.
         */
 
+        for (var i = 10; i <= 30; i++) {
+            if ( i % 2 == 0) {
+                console.log(i);
+            }
+        }
 
         /*
         ul안에 "data 1"부터 "data 12"까지의 글자를 가진 총 12개의 li를 생성해주세요.
@@ -63,8 +71,14 @@
         */
 
         var target = document.getElementById('listArea');
-        target.innerHTML = '<li>테스트</li>';
 
+        var temp = "";
+
+        for (var i = 0; i < 12; i++) {
+            temp += "<li class='style" + (i % 3 + 1) + "'>data " + (i + 1) + "</li>";
+        }
+
+        target.innerHTML = temp;
 
     </script>
 </body>

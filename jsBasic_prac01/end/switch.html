@@ -15,23 +15,25 @@
         그 외에는 "red, green, blue만 컬러 설정이 가능합니다."
         */
 
+        var color = '';
+
         var color = 'FF0000';
 
         switch (color) {
             case 'red' :
             case 'FF0000' :
-                console.log('set red clolor');
+                console.log('set red color');
                 break;
             case 'green' :
             case '00FF00' :
-                console.log('set green clolor');
+                console.log('set green color');
                 break;
             case 'blue' :
             case '0000FF' :
-                console.log('set blue clolor');
+                console.log('set blue color');
                 break;
             default :
-                console.log('red, green, blue 컬러 설정이 가능합니다.');
+                console.log('red, green, blue만 컬러 설정이 가능합니다.');
         }
 
         /*
@@ -45,6 +47,41 @@
 
         var month = "";
 
+        var month = "3";
+        var result = "",
+            endDay = null,
+            isMatched = true;
+
+        switch (month) {
+            case "1" :
+            case "3" :
+            case "5" :
+            case "7" :
+            case "8" :
+            case "10" :
+            case "12" :
+                endDay = 31;
+                break;
+            case "2" :
+                endDay = 28;
+                break;
+            case "4" :
+            case "6" :
+            case "9" :
+            case "11" :
+                endDay = 30;
+                break;
+            default :
+                isMatched = false;
+        }
+
+        if (isMatched) {
+            result = month + '월은 ' + endDay + '일이 있습니다.';
+        } else {
+            result = '1부터 12까지 올바른 달을 입력해 주세요';
+        }
+
+        console.log(result);
     </script>
 </body>
 </html>

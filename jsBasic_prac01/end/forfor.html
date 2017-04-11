@@ -20,6 +20,14 @@
 
         var result01 = "";
 
+        for (var i = 2; i <= 9; i++) {
+            for (var j = 1; j <= 9; j++) {
+                result01 += i + ' * ' + j + ' = ' + i*j + '\n';
+            }
+        }
+        console.log(result01); 
+
+
         /*
         구구단을 아래와 같이 출력해 주세요.
         (출력해야 할 값들을 문자열에 담아 한 번만 출력해주세요.)
@@ -32,6 +40,24 @@
 
         var result02 = "";
 
+        // for (var i = 2; i <= 9; i++) {
+        //     for (var j = 1; j <= 9; j++) {
+        //         if (j == 9) {
+        //             result02 += i + ' * ' + j + ' = ' + i*j + '\n';
+        //         } else {
+        //             result02 += i + ' * ' + j + ' = ' + i*j + '\t';
+        //         }
+
+        //     }
+        // }
+
+        for (var i = 2; i <= 9; i++) {
+            for (var j = 1; j <= 9; j++) {
+                result02 += i + ' * ' + j + ' = ' + i*j + '\t';
+            }
+            result02 += '\n';
+        }
+        console.log(result02);
     </script>
 </body>
 </html>

@@ -15,6 +15,27 @@
         4. 같은 숫자가 나오거나, 같지 않은 숫자가 3번 연속으로 나오면 '무인도 탈출' 출력
         */
         
+        var dice01,
+            dice02,
+            status = '무인도에 도착했습니다.\n',
+            count = 0;
+        
+        do {
+            count++;
+            dice01 = rollDice(1, 6);
+            dice02 = rollDice(1, 6);
+            status += '주사위를 돌렸습니다!!\t주사위1 : ' + dice01 + '\t주사위2 : ' + dice02 + '\n';
+        } while (dice01 != dice02 && count < 3);
+        
+        status += '무인도 탈출!!'
+        
+        console.log(status);
+
+        // Math.floor( Math.random() * (max - min + 1) ) + min;
+        function rollDice(min, max) {
+            result = Math.floor( Math.random() * (max - min) + 1 ) + min;
+            return result;
+        }
     </script>
 </body>
 </html>
