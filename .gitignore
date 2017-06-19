@@ -3,3 +3,7 @@
 
 # Visual Studio Code Project files
 .vscode/
+
+# Exclude any PSD/AI source
+*.psd
+*.ai
