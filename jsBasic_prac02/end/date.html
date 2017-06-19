@@ -10,12 +10,22 @@
     
     <script>
         // 오늘 날짜를 년/월/일 형태로 출력하기
-        var today = '';
+        var today = new Date(),
+            year = today.getFullYear(),
+            month = today.getMonth() + 1,
+            day = today.getDate();
+
+        console.log(year + '/' + month + '/' + day);
 
 
 
         // 현재시간을 시:분:초 형태로 출력하기
-        var time = '';
+        var time = new Date(),
+            hours = time.getHours(),
+            minutes = time.getMinutes(),
+            seconds = time.getSeconds();
+
+        console.log(hours + '/' + minutes + '/' + seconds);
 
 
 
@@ -23,7 +33,14 @@
         // 그 외에는 오늘 날짜 출력하기
         // ex) 6월 1일이면 'Today is June 1'
 
-        var dToday = new Date();
+        var dToday = new Date(),
+            monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        if (dToday.getMonth() == 0 && dToday.getDate() == 1) {
+            console.log('Happy new year!');
+        } else {
+            console.log('Today is ' + monthNames[dToday.getMonth()] + ' ' + dToday.getDate());
+        }
     </script>
 </body>
 </html>
