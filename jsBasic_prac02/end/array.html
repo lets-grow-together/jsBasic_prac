@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // data 배열에 있는 객체를 직급레벨 순서에 맞게 정렬해보세요.
+
+        // 직급순서
+        var level = ['책임', '선임', '전임', '사원'];
+
+        // 정렬대상
+        var data = [
+            {name: '최사원', position: '사원'},
+            {name: '홍책임', position: '책임'},
+            {name: '김전임', position: '전임'},
+            {name: '정선임', position: '선임'}
+        ];
+
+        /*
+            arr.indexOf(searchValue);
+            배열에서 검색하려는 값과 일치하는 첫 번째 index 를 반환한다.
+            찾을 수 없으면 -1 반환
+            IE9+
+        */
+
+        function compareFunc(v1, v2) {
+            return level.indexOf(v1.position) - level.indexOf(v2.position);
+        }
+
+        data.sort(compareFunc);
+        console.log(data);
+    </script>
+</body>
+</html>

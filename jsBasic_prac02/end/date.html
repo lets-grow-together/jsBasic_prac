@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 오늘 날짜를 년/월/일 형태로 출력하기
+        // var today = '';
+
+        var today = '',
+            tempDay = new Date();
+
+        today += tempDay.getFullYear() + '/' + (tempDay.getMonth() + 1) + '/' + tempDay.getDate();
+        console.log(today);
+
+
+        // 현재시간을 시:분:초 형태로 출력하기
+        // var time = '';
+
+        var time = '',
+            tempDay2 = new Date();
+
+        time += tempDay2.getHours() + ':' + tempDay2.getMinutes() + ':' + tempDay2.getSeconds();
+        console.log(time);
+
+
+        // 1월 1일이면 'Happy new year!' 를 출력하기
+        // 그 외에는 오늘 날짜 출력하기
+        // ex) 6월 1일이면 'Today is June 1'
+
+        var dToday = new Date(),
+            nMonth = dToday.getMonth(),
+            nDate = dToday.getDate(),
+            aMonthList = [];
+
+        aMonthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+        if (nMonth == 0 && nDate == 1) {
+            console.log('Happy new year!');
+        } else {
+            console.log('Today is ' + aMonthList[nMonth] + ' ' + nDate);
+        }
+    </script>
+</body>
+</html>
