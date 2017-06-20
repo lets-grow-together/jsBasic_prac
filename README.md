@@ -16,7 +16,7 @@ git clone https://github.com/lets-grow-together/jsBasic_prac jsBasic_prac
 
 ### 2. 자신의 브랜치를 생성합니다.
 
-branch 이름 규칙
+브랜치 명
 
 [nickname]/[step]_[optional]
 
@@ -25,6 +25,14 @@ branch 이름 규칙
 yolo/jsPrac
 yolo/jsPrac_try
 yolo/jsPrac_test
+```
+
+브랜치 생성
+
+```bash
+# 브랜치 생성하고 이동
+git checkout -b [branch-name]
+git checkout -b yolo/jsPrac
 ```
 
 ### 3. 자신의 브랜치에서 실습을 진행합니다.
