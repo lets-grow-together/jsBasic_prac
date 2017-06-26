@@ -16,7 +16,17 @@
     // addZero(5, 4) => 0005
 
     function addZero(val, len) {
-    
+        var str = val.toString(),
+                strNo =  str.length;
+
+         if(strNo !== len){ 
+            for(var i = 1; i < len; i++){
+                val = "0" + val;
+            }
+        } 
+
+        return val;
+
     }
 
     console.log(addZero(5, 2));
@@ -26,6 +36,12 @@
     // 배열의 평균 값 구하기
 
     function getAverage(arr){
+        var sum = 0;
+
+      for (var i = 0; i < arr.length; i++)
+        sum += arr[i];
+
+        return sum / arr.length;
     }
 
     var aMyScore = [100, 70, 90, 60]; 
@@ -36,7 +52,13 @@
     // 0211112222 -> ******2222
 
     function changeNumber(phoneNumber){
-    
+
+        var chkString = phoneNumber.replace(/(\d*)(\d{4})/,'$2'),
+               chkStar =  phoneNumber.replace(/(\d*)(\d{4})/,'$1'),
+               newStr =  chkStar.replace(/\d/g,'*')+  chkString;
+        
+                return newStr;
+
     }
 
     console.log("결과 : " + changeNumber('01033334444'));
@@ -47,7 +69,11 @@
     // SUN, MON, TUE, WED, THU, FRI, SAT 중에 출력
 
     function getDayName(year, month, date){
-    
+        var week = new Array("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT");
+        var date = year+"-"+month+"-"+date,
+               day = new  Date(date).getDay();
+
+        return week[day];
     }
 
     console.log(getDayName(2017, 6, 12));
