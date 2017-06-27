@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    // 주어진 값(val)의 길이가 자리수(len) 보다 작으면
+    // 자리수 만큼 '0'을 값 앞에 붙여서 출력하기
+    // addZero(5, 2) => 05
+    // addZero(15, 2) => 15
+    // addZero(5, 4) => 0005
+
+    function addZero(val, len) {
+        var nValLen = val.toString().length;
+        
+        for (var i = nValLen; i < len; i++) {
+            val = '0' + val;
+        }
+
+        return val;
+    }
+
+    console.log(addZero(5, 2));
+    console.log(addZero(15, 2));
+    console.log(addZero(5, 4));
+
+    // 배열의 평균 값 구하기
+
+    function getAverage(arr){
+        var sum = 0;
+
+        for (var i = 0, tot = arr.length; i < tot; i++) {
+            sum += arr[i];
+        }
+
+        return sum / tot;
+    }
+
+    // function getAverage(arr) {
+    //     var sum = arr.reduce(function(prev, cur) {
+    //         return prev + cur;
+    //     });
+    //     return sum / arr.length;
+    // }
+
+    var aMyScore = [100, 70, 90, 60]; 
+    console.log("평균 : " + getAverage(aMyScore));
+
+    // 전화번호 맨 뒷자리 4자리를 제외한 나머지를 '*' 로 변경하기
+    // 01033334444 -> *******4444
+    // 0211112222 -> ******2222
+
+    function changeNumber(phoneNumber){
+        var result = "",
+            len = phoneNumber.length,
+            endPos = len - 4;
+
+        for (var i = 0; i < len; i++) {
+            result += i < endPos
+                ? "*"
+                : phoneNumber.charAt(i);
+        }
+
+        return result;
+    }
+
+    // function changeNumber(phoneNumber){
+    //     var result = "",
+    //         len = phoneNumber.length,
+    //         endPos = len - 4;
+
+    //     for (var i = 0; i < endPos; i++) {
+    //         result += '*';
+    //     }
+    //     return result + phoneNumber.substring(endPos, len);
+    // }
+
+    // function changeNumber(phoneNumber) {
+    //     return phoneNumber.replace(/\d(?=\d{4})/g, "*");
+    // }
+
+    console.log("결과 : " + changeNumber('01033334444'));
+    console.log("결과 : " + changeNumber('0211112222'));
+
+    // 요일 구하기
+    // 2017년 6월 12일이 무슨 요일인지 출력하기
+    // SUN, MON, TUE, WED, THU, FRI, SAT 중에 출력
+
+    function getDayName(year, month, date){
+        var result = '',
+            aDay = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
+            dTime = new Date(year, month - 1, date);
+            
+            result = aDay[dTime.getDay()];
+
+        return result;
+    }
+
+    // function getDayName(year, month, date){
+    //     var dTime = new Date(year, month - 1, date);
+
+    //     return dTime.toString().slice(0, 3).toUpperCase();
+    // }
+
+    console.log(getDayName(2017, 6, 12));
+    </script>
+</body>
+</html>
