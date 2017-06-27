@@ -16,16 +16,29 @@
     // addZero(5, 4) => 0005
 
     function addZero(val, len) {
-        //val = val + ''; //숫자타입에 문자열을 더하면 결과가 문자열
-        val = String(val);
-        var valLength = val.length;
-        var zero = '';
+        // val = val + ''; //숫자타입에 문자열을 더하면 결과가 문자열
+        // val = String(val); //이것도 문자열 타입으로 바꾸기
+        // var valLength = val.length;
+        // var zero = '';
 
-        if(valLength < len) {
-            for (i=0; i<len-valLength; i++) {
-                zero += '0';
+        // if(valLength < len) {
+        //     for (i=0; i<len-valLength; i++) {
+        //         zero += '0';
+        //     }
+        //     return zero + val;
+        // }
+        // return val;
+
+        // ---- 다시 해보자(06.27) ----
+        //val 값의 길이를 구하려면 length를 쓸것인데, length를 쓰려면 문자열 타입이어야 해. 숫자 타입인 val을 문자열 타입으로 바꿔줘야 length를 쓸 수 있어.
+        var sValLength = val.toString().length; // 메서드 체이닝(chaining). Number 객체의 메서드를 체이닝한다고 Number 객체의 메서드만 붙일 수 있는 것은 아니다. toString()메서드를 사용하면 String 객체를 리턴하므로 곧바로 String 객체의 메서드로 체이닝 할 수도 있다.
+        var sResult = val;
+
+        if(sValLength < len) {
+            for(var i = 1; i < len; i++) {
+                sResult = '0' + sResult;
             }
-            return zero + val;
+            return sResult;
         }
         return val;
     }
@@ -34,25 +47,41 @@
     console.log(addZero(15, 2));
     console.log(addZero(5, 4));
 
-    // 배열의 평균 값 구하기
 
+    // 배열의 평균 값 구하기
     function getAverage(arr){
+        // var sum = 0;
+        // for (i=0; i<arr.length; i++) {
+        //     sum += arr[i];
+        // }
+        // return sum / arr.length;
+
+        // ---- 다시 해보자(06.27) ----
         var sum = 0;
-        for (i=0; i<arr.length; i++) {
+        for(var i = 0; i < arr.length; i++) {
             sum += arr[i];
         }
-        return sum / arr.length;
+        return sum / arr.length; // MDN가보니 Array.length 가 있네
+
     }
 
     var aMyScore = [100, 70, 90, 60];
     console.log("평균 : " + getAverage(aMyScore));
+
 
     // 전화번호 맨 뒷자리 4자리를 제외한 나머지를 '*' 로 변경하기
     // 01033334444 -> *******4444
     // 0211112222 -> ******2222
 
     function changeNumber(phoneNumber){
+        // ---- 다시 해보자(06.27) ----
+        var sResultNum = '',
+            nNumberLength = phoneNumber.length;
 
+        for(var i = 0; i < nNumberLength-4; i++) {
+            sResultNum += '*';
+        }
+        return sResultNum + phoneNumber.substring(nNumberLength,nNumberLength-4);
     }
 
     console.log("결과 : " + changeNumber('01033334444'));
@@ -63,13 +92,17 @@
     // SUN, MON, TUE, WED, THU, FRI, SAT 중에 출력
 
     function getDayName(year, month, date){
-        var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-        var dayText = week[new Date(year, month-1, date).getDay()];
+        // var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        // var dayText = week[new Date(year, month-1, date).getDay()];
 
-        return dayText;
+        // return dayText;
+
+        // ---- 다시 해보자(06.27) ----
+        var aWeekText = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        return aWeekText[new Date(year, month-1, date).getDay()];
     }
 
-    console.log(getDayName(2017, 6, 12));
+    console.log(getDayName(2017, 6, 27));
     </script>
 </body>
 </html>
