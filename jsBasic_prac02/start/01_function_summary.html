@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #print {margin:8px;padding:8px;border:2px solid green;}
+    </style>
+</head>
+<body>
+    <button type="button" type="button" id="btnPlay">Play</button>
+    <button type="button" type="button" id="btnStop">Stop</button>
+    <div id="print"></div>
+    
+    <script>
+        /*
+            Play 버튼을 누르면 1초마다 #print에 숫자 출력하기
+            Stop 버튼을 누르면 정지시키기
+        */
+
+        var elPrint   = document.getElementById('print'),
+            elBtnPlay = document.getElementById('btnPlay'),
+            elBtnStop = document.getElementById('btnStop');
+
+        // 이벤트 핸들러 등록 addEventListener() +IE9
+        elBtnPlay.addEventListener('click', function() {
+            var elInfo = document.createElement('p');
+
+            elInfo.innerHTML = '<strong>플레이</strong> 버튼을 클릭했습니다.';
+            elPrint.appendChild(elInfo);
+        });
+
+        elBtnStop.addEventListener('click', function() {
+            var elInfo = document.createElement('p');
+            
+            elInfo.innerHTML = '<strong>스탑</strong> 버튼을 클릭했습니다.';
+            elPrint.appendChild(elInfo);
+        });
+    </script>
+</body>
+</html>
