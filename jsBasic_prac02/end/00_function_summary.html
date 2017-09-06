@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #print {margin:8px;padding:8px;border:2px solid green;}
+    </style>
+</head>
+<body>
+    <button type="button" type="button" id="btnPlay">Play</button>
+    <button type="button" type="button" id="btnStop">Stop</button>
+    <div id="print"></div>
+    
+    <script>
+        /*
+            Play 버튼을 누르고 Stop 버튼을 눌렀을 때 몇 초가 지났는지 출력해보자
+        */
+
+        var elPrint   = document.getElementById('print'),
+            elBtnPlay = document.getElementById('btnPlay'),
+            elBtnStop = document.getElementById('btnStop');
+
+        var dTime1 = 0,
+            dTime2 = 0;
+
+        // 이벤트 핸들러 등록 addEventListener() +IE9
+        elBtnPlay.addEventListener('click', function() {
+            elPrint.innerHTML = '';
+            dTime1 = (new Date()).getTime();
+            // dObj = new Date();
+            // dTime1 = dObj.getTime();
+            // dTime1 = Date.now(); // +IE9
+            // dTime1 = +new Date();
+
+            var elInfo = document.createElement('p');
+
+            elInfo.innerHTML = '시작시간 : ' + dTime1;
+            elPrint.appendChild(elInfo);
+        });
+
+        elBtnStop.addEventListener('click', function() {
+            dTime2 = (new Date()).getTime();
+
+            var dDiff = (dTime2 - dTime1) / 1000;
+
+            var elInfo = document.createElement('p'),
+                elInfoResult = document.createElement('p');
+            
+            elInfo.innerHTML = '종료시간 : ' + dTime2;
+            elInfoResult.innerHTML = '차이 : ' + dDiff + ' 초';
+
+            elPrint.appendChild(elInfo);
+            elPrint.appendChild(elInfoResult);
+        });
+    </script>
+</body>
+</html>
