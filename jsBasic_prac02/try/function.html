@@ -16,16 +16,24 @@
     // addZero(5, 4) => 0005
 
     function addZero(val, len) {
-      var sVal = val + '',
-          sValLen = sVal.length;
-      if (sValLen < len) {
-        for (var i = 0; i < len-sValLen; i++) {
-          sVal = '0' + sVal;
-        }
-        return sVal;
-      } else {
-        return sVal;
+      // var sVal = val + '',
+      //     sValLen = sVal.length;
+
+      // if (sValLen < len) {
+      //   for (var i = 0; i < len-sValLen; i++) {
+      //     sVal = '0' + sVal;
+      //   }
+      //   return sVal;
+      // } else {
+      //   return sVal;
+      // }
+
+      var nValLen = val.toString().length;
+
+      for(var i = nValLen; i < len; i++) {
+        val = '0' + val;
       }
+      return val;
     }
 
     console.log(addZero(5, 2));
@@ -36,10 +44,10 @@
 
     function getAverage(arr){
       var sum = 0;
-      for (var i = 0; i < arr.length; i++) {
+      for (var i = 0, tot = arr.length; i < tot; i++) {
         sum += arr[i];
       }
-      return sum/arr.length;
+      return sum/tot;
     }
 
     var aMyScore = [100, 70, 90, 60];
@@ -49,12 +57,28 @@
     // 01033334444 -> *******4444
     // 0211112222 -> ******2222
 
-    function changeNumber(phoneNumber){
-      var newNum = '';
-      for (var i = 0; i < phoneNumber.length-4; i++) {
-        newNum += '*'
-      }
-      return newNum + phoneNumber.substr(-4);
+    // function changeNumber(phoneNumber){
+    //   var newNum = '';
+    //   for (var i = 0; i < phoneNumber.length-4; i++) {
+    //     newNum += '*'
+    //   }
+    //   return newNum + phoneNumber.substr(-4);
+    // }
+
+    // function changeNumber(phoneNumber){
+    //   var sResult = '',
+    //       nLen = phoneNumber.length,
+    //       endPos = nLen-4;
+    //   for (var i = 0; i < nLen; i++) {
+    //     sResult += i < endPos
+    //       ? '*'
+    //       : phoneNumber.charAt(i);
+    //   }
+    //   return sResult;
+    // }
+
+    function changeNumber(phoneNumber) {
+      return phoneNumber.replace(/\d(?=\d{4})/g, '*');
     }
 
     console.log("결과 : " + changeNumber('01033334444'));
