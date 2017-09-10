@@ -57,13 +57,13 @@
     // 01033334444 -> *******4444
     // 0211112222 -> ******2222
 
-    // function changeNumber(phoneNumber){
-    //   var newNum = '';
-    //   for (var i = 0; i < phoneNumber.length-4; i++) {
-    //     newNum += '*'
-    //   }
-    //   return newNum + phoneNumber.substr(-4);
-    // }
+    function changeNumber(phoneNumber){
+      var newNum = '';
+      for (var i = 0; i < phoneNumber.length-4; i++) {
+        newNum += '*'
+      }
+      return newNum + phoneNumber.substr(-4);
+    }
 
     // function changeNumber(phoneNumber){
     //   var sResult = '',
@@ -77,9 +77,9 @@
     //   return sResult;
     // }
 
-    function changeNumber(phoneNumber) {
-      return phoneNumber.replace(/\d(?=\d{4})/g, '*');
-    }
+    // function changeNumber(phoneNumber) {
+    //   return phoneNumber.replace(/\d(?=\d{4})/g, '*');
+    // }
 
     console.log("결과 : " + changeNumber('01033334444'));
     console.log("결과 : " + changeNumber('0211112222'));

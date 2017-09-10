@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #print {width:200px;height:30px;margin-top:4px;border:2px solid green;}
+        .container {position:relative;margin-top:10px;}
+        #box {position:absolute;left:50px;top:0;width:50px;height:50px;background-color:green;color:#fff;}
+    </style>
+</head>
+<body>
+  <button type="button" id="btnInit">위치초기화</button>
+	<button type="button" id="btnStart01">반복실행</button> <!-- 0.1초마다 5px씩 이동 -->
+	<button type="button" id="btnStop01">반복실행 취소</button>
+	<button type="button" id="btnStart02">한번실행</button> <!-- 2초 뒤에 100px 이동 -->
+	<button type="button" id="btnStop02">한번실행 취소</button>
+	<div id="print"></div>
+	<div class="container">
+		<div id="box">move Box</div>
+	</div>
+
+    <script>
+        var elPrint      = document.getElementById('print'),
+            elBtnInit    = document.getElementById('btnInit'),
+            elBtnStart01 = document.getElementById('btnStart01'),
+            elBtnStop01  = document.getElementById('btnStop01'),
+            elBtnStart02 = document.getElementById('btnStart02'),
+            elBtnStop02  = document.getElementById('btnStop02');
+            elBox        = document.getElementById('box');
+
+        // Javascript DOM 엘리먼트 css left 값 구하기
+        var sPosX = window.getComputedStyle(elBox).getPropertyValue('left'),
+            nPosX = parseInt(sPosX),
+            oFive = null;
+            oHundred = null;
+        sPosX = sPosX.substr(0, sPosX.length-2)
+
+        // 이벤트 핸들러 등록 addEventListener() +IE9
+        elBtnInit.addEventListener('click', function() {
+            elPrint.innerHTML = '위치초기화';
+            nPosX = 0
+            elBox.style.left = nPosX;
+        });
+
+        elBtnStart01.addEventListener('click', function() {
+            elPrint.innerHTML = '0.1초마다 5px씩 이동';
+            if (oFive === null) {
+              oFive = setInterval(function() {
+              nPosX += 5;
+              elBox.style.left = nPosX  + 'px';
+              },100)
+            }
+        });
+
+        elBtnStop01.addEventListener('click', function() {
+            elPrint.innerHTML = '반복실행 취소';
+            clearInterval(oFive);
+            oFive = null;
+        });
+
+        elBtnStart02.addEventListener('click', function() {
+            elPrint.innerHTML = '2초뒤에 100px 이동';
+            if (oHundred === null) {
+              oHundred = setTimeout(function() {
+              nPosX += 100;
+              elBox.style.left = nPosX  + 'px';
+              },2000)
+            }
+        });
+
+        elBtnStop02.addEventListener('click', function() {
+            elPrint.innerHTML = '한번실행 취소';
+            clearTimeout(oHundred);
+            oHundred = null;
+        });
+
+    </script>
+</body>
+</html>
