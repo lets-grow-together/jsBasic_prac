@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #print {margin:8px;padding:8px;border:2px solid green;}
+    </style>
+</head>
+<body>
+    <div id="print"></div>
+    
+    <script>
+        /*
+            시간이 갱신되는 디지털 시계를 만들어 봅시다.
+            00:00:00
+        */
+
+        var elPrint = document.getElementById('print'),
+            oTimer = null;
+
+        var clock = function() {
+            var sHour,
+                sMin,
+                sSec,
+                dTime = new Date();
+
+            sHour = addZero(dTime.getHours(), 2);
+            sMin  = addZero(dTime.getMinutes(), 2);
+            sSec  = addZero(dTime.getSeconds(), 2);
+
+            elPrint.innerHTML = sHour + ':' + sMin + ':' + sSec;
+        }
+
+        var addZero = function(val, displayLength) {
+            var nValLen = val.toString().length;
+
+            for (var i = nValLen; i < displayLength; i++) {
+                val = '0' + val;
+            }
+
+            return val;
+        }
+
+        clock();
+        oTimer = setInterval(clock, 1000);
+    </script>
+</body>
+</html>
