@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #container {position:relative;}
+        #container div{position:absolute; left:0; top:0; width:200px; height:100px; display:none;}
+        #container div:first-child {display:block;}
+        .red {background-color: red;}
+        .green {background-color: green;}
+        .blue {background-color: blue;}
+    </style>
+</head>
+<body>
+    <button type="button" id="btnPlay">Play</button>
+    <button type="button" id="btnStop">Stop</button>
+    <div id="container">
+        <div class="red"></div>
+        <div class="green"></div>
+        <div class="blue"></div>
+    </div>
+
+    <script>
+        var elContainer  = document.getElementById('container'),
+            elBox = elContainer.getElementsByTagName('div'),
+            elbtnPlay = document.getElementById('btnPlay'),
+            elbtnStop = document.getElementById('btnStop'),
+            oTime = null,
+            index = 0,
+            indexLast = elBox.length-1;
+
+            console.log(elBox);
+            console.log(elBox.length);
+
+      elbtnPlay.addEventListener('click', function() {
+          if (oTime === null) {
+            oTime = setInterval(function() {
+              
+              for (var i = 0; i < elBox.length; i++) {
+                elBox[i].style.display = 'none';
+              }
+
+              if (index === indexLast) {
+                index = 0
+              } else {
+                index = index+1
+              }
+
+              elBox[index].style.display = 'block';
+          },1000)
+        }
+      });
+
+      elbtnStop.addEventListener('click', function() {
+        clearInterval(oTime);
+        oTime = null;
+      })
+    </script>
+</body>
+</html>
