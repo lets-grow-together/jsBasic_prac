@@ -29,27 +29,23 @@
             elbtnPlay = document.getElementById('btnPlay'),
             elbtnStop = document.getElementById('btnStop'),
             oTime = null,
-            index = 0,
-            indexLast = elBox.length-1;
-
-            console.log(elBox);
-            console.log(elBox.length);
+            nIndex = 0,
+            nLastIndex = elBox.length-1;
 
       elbtnPlay.addEventListener('click', function() {
           if (oTime === null) {
             oTime = setInterval(function() {
-              
               for (var i = 0; i < elBox.length; i++) {
                 elBox[i].style.display = 'none';
               }
 
-              if (index === indexLast) {
-                index = 0
+              if (nIndex === nLastIndex) {
+                nIndex = 0
               } else {
-                index = index+1
+                nIndex++
               }
 
-              elBox[index].style.display = 'block';
+              elBox[nIndex].style.display = 'block';
           },1000)
         }
       });
