@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>document ready and window load</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        span {
+            display: block;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #CCCCCC;
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+        }
+    </style>
+
+<script>
+        /*
+        * document ready는 DOM 문서를 읽은 후 발생
+        * window load는 DOM 문서상의 이미지 등의 데이터까지 로드가 완료된 후 발생
+        */
+
+        /* document ready 이벤트가 일어나면
+        *   - #printBox 에 <span>document ready</span> 추가하기
+        *   - img 에 load 이벤트가 발생하면
+        *       + #printBox 에 <span>image load</span> 추가하기
+        * 
+        * window load 이벤트가 일어나면
+        *   - #printBox 에 <span>window load</span> 추가하기
+        */
+
+        var welPrintBox;
+
+        //$(document).ready(function() {
+        $(function () {
+            welPrintBox = $('#printBox');
+            welPrintBox.append('<span>document ready</span>');
+
+            $('img').load(function () {
+                welPrintBox.append('<span>image load</span>');
+            });
+            // $('img').load() 를 $(window).load() 안에 넣으면 아무런 의미가 없다.
+        });
+
+        $(window).load(function () {
+            welPrintBox.append('<span>window load</span>');
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="printBox"></div>
+    <img src="http://img.naver.net/static/www/u/2013/0731/nmms_224940510.gif">
+    <img src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+
+</body>
+
+</html>

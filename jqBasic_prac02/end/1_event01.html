@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>add event, remove event</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+        button {
+            padding: 10px;
+        }
+
+        span {
+            display: inline-block;
+            margin: 0 5px 5px 0;
+            padding: 5px;
+            border: 1px solid #000000;
+        }
+
+        #printBox {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button type="button" id="btnAdd">버튼 이벤트 등록</button>
+        <button type="button" id="btnRemove">버튼 이벤트 삭제</button>
+    </div>
+
+    <button type="button" id="btn">버튼</button>
+    <div id="printBox"></div>
+
+    <script>
+        /*
+        * #btnAdd 버튼 클릭 시 
+        *   - #btn 버튼의 텍스트 값을 "클릭해보세요." 로 설정하기 
+        *   - #btn 버튼 클릭 시 #printBox에 "<span>click</span>" 추가하기 
+        * 
+        * #btnRemove 버튼 클릭 시  
+        *   - #btn 버튼의 텍스트 값을 "클릭해도 동작하지 않습니다." 로 설정하기 
+        *   - #btn 버튼 클릭 이벤트 삭제하기 
+        */
+
+        var welBtn = $('#btn'),
+            welBtnAdd = $('#btnAdd'),
+            welBtnRemove = $('#btnRemove');
+
+        welBtnAdd.on('click', function () {
+            welBtn.text('클릭해보세요');
+            welBtn.on('click', function () {
+                $('#printBox').append('<span>click</span>');
+            });
+        });
+
+        // welBtnAdd 를 여러번 클릭했을 때 문제가 있다.
+
+        welBtnRemove.on('click', function () {
+            welBtn.text('클릭해도 동작하지 않습니다.');
+            welBtn.off('click');
+        });
+    </script>
+</body>
+
+</html>

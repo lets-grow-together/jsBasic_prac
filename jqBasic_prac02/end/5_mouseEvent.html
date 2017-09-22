@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>mouseenter, mouseleave, mouseover, mouseout</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <style>
+        div[id^="box"] {
+            height: 200px;
+            margin: 50px;
+            background-color: gold;
+        }
+
+        div[id^="printBox"] {
+            margin-left: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+        }
+
+        span {
+            display: inline-block;
+            margin: 20px;
+            width: 80px;
+            height: 80px;
+            background-color: red;
+        }
+    </style>
+
+    <script>
+        /*
+        * mouseenter() 와 mouseover() 의 비교
+        * mouseleave() 와 mouseout() 의 비교
+        */
+
+        $(document).ready(function () {
+            $('#box_1').on('mouseenter', function () {
+                $(this).append('enter\t');
+            });
+
+            $('#box_1').on('mouseleave', function () {
+                $(this).append('leave\t');
+            });
+
+            $('#box_2').on('mouseover', function () {
+                $(this).append('over\t');
+            });
+
+            $('#box_2').on('mouseout', function () {
+                $(this).append('out\t');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>각각의 박스 위에서 마우스를 움직여보세요.</h1>
+    <div id="box_1"><span></span></div>
+    <div id="box_2"><span></span></div>
+</body>
+
+</html>
