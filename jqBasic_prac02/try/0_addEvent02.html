@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>add event</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+        button {
+            padding: 10px;
+        }
+
+        span {
+            display: inline-block;
+            margin: 0 5px 5px 0;
+            padding: 5px;
+            border: 1px solid #000000;
+        }
+
+        #printBox {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button type="button" id="btn">버튼</button>
+    <div id="printBox"></div>
+    <div id="printBox_1"></div>
+
+    <script>
+        /*
+        * 동일한 이벤트를 여러 개 등록했을 경우
+        *
+        * #btn 버튼 클릭 시
+        *   - #printBox에 <span>click</span> 추가하기
+        *
+        * #btn 버튼 클릭 시 아래와 같이 동작하는 이벤트 핸들러 추가
+        *   - #printBox_1에 <span>click 2</span> 추가하기
+        */
+
+
+        var welBtn = $('#btn');
+        welBtn.on('click', function() {
+          $('#printBox').append('<span>click</span>');
+        });
+
+        welBtn.on('click', function() {
+          $('#printBox_1').append('<span>click2</span>');
+        });
+
+    </script>
+</body>
+
+</html>

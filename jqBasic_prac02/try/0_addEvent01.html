@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>add event</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+        button {
+            padding: 10px;
+        }
+
+        span {
+            display: inline-block;
+            margin: 0 5px 5px 0;
+            padding: 5px;
+            border: 1px solid #000000;
+        }
+
+        #printBox {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button type="button" id="btn">버튼</button>
+    <div id="printBox"></div>
+
+    <script>
+        /*
+        * #btn 버튼 클릭 시
+        *   - #printBox에 <span>click</span> 추가하기
+        */
+
+        var welBtn = $('#btn');
+        welBtn.on('click', function() {
+          $('#printBox').append('<span>click</span>');
+        });
+
+    </script>
+</body>
+
+</html>

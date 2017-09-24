@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+      .tab_list{position:relative;padding:0;list-style:none}
+      .tab_list:after{display:block;clear:both;content:''}
+      .tab_list li{float:left}
+      .tab_list li.on a{background:#efe}
+      .tab_list li a{display:block;width:100px;height:50px;background-color:#fee;text-align:center}
+      .tab_list .tab_cont{display:none;position:absolute;top:50px;left:0;width:300px;height:300px;background-color:#eef}
+      .tab_list li.on .tab_cont{display:block}
+    </style>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+    	$(function() {
+    		var elTabLists = $('.tab_list li'),
+            elTab = elTabLists.find('a');
+
+        elTab.on("click", function(e) {
+          e.preventDefault();
+          elTabLists.removeClass('on');
+          $(this).parent().addClass('on');
+    		});
+    	})
+    </script>
+</head>
+<body>
+  <div id="container">
+    <div class="tab_area">
+      <ul class="tab_list">
+        <li class="on">
+          <a href="#">탭1</a>
+          <div class="tab_cont">
+            탭내용1
+          </div>
+        </li>
+        <li>
+          <a href="#">탭2</a>
+          <div class="tab_cont">
+            탭내용2
+          </div>
+        </li>
+        <li>
+          <a href="#">탭3</a>
+          <div class="tab_cont">
+            탭내용3
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

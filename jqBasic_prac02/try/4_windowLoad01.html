@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>windowLoad_js</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        /*
+        * DOM Level 0 방식
+        * 내 코드와 다른 사람의 코드 둘 다 실행되길 원하지만 아래 코드의 경우
+        * 다른 사람코드만 동작하게 된다. (=은 대입연산자)
+        *
+        * javascript의 DOM Level 2 방식의 이벤트 핸들러(.addEventListener(), .attachEvent() 등...)를 사용하면 해결 가능
+        */
+
+        // 내 코드
+        // window.onload = function () {
+        //     $('#wrapper').append('<div>ok my code!!</div>');
+        // };
+        window.addEventListener('load', function () {
+            $('#wrapper').append('<div>ok my code!!</div>');
+        });
+
+        // 다른사람 코드
+        // window.onload = function () {
+        //     $('#wrapper').append('<div>ok others code!!</div>');
+        // }
+
+        window.addEventListener('load', function () {
+            $('#wrapper').append('<div>ok others code!!</div>');
+        });
+
+        $(window).on('load', function() {
+          $('#wrapper').append('<div>ok my code!!</div>');
+        });
+
+        $(window).on('load', function() {
+          $('#wrapper').append('<div>ok others code!!</div>');
+        });
+    </script>
+</head>
+
+<body>
+    <div id="wrapper"></div>
+</body>
+
+</html>

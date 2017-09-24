@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>trigger</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <style>
+        button {
+            padding: 10px;
+        }
+
+        span {
+            display: inline-block;
+            margin: 0 5px 5px 0;
+            padding: 5px;
+            border: 1px solid #000000;
+        }
+
+        #printBox {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button type="button" id="btnA">버튼 A</button>
+        <button type="button" id="btnB">버튼 B</button>
+    </div>
+
+    <div id="printBox"></div>
+
+    <script>
+        /*
+        * #btnA 버튼 클릭 시
+        *   - #printBox에 "<span>A 버튼이 클릭되었습니다.</span>" 추가하기
+        *
+        * #btnB 버튼 클릭 시
+        *   - #btnA 버튼 클릭 이벤트 발생시키기
+        */
+
+        var welBtnA = $('#btnA'),
+            welBtnB = $('#btnB'),
+            welPrintBox = $('#printBox');
+
+            welBtnA.on('click', function() {
+              welPrintBox.append('<span>A 버튼이 클릭되었습니다.</span>');
+            });
+
+            welBtnB.on('click', function() {
+              welBtnA.trigger('click');
+            });
+
+    </script>
+</body>
+
+</html>
