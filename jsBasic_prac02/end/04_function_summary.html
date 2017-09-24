@@ -30,22 +30,24 @@
             elbtnStop = document.getElementById('btnStop'),
             oTime = null,
             nIndex = 0,
-            nLastIndex = elBox.length-1;
+            nLength = elBox.length;
 
       elbtnPlay.addEventListener('click', function() {
           if (oTime === null) {
             oTime = setInterval(function() {
-              for (var i = 0; i < elBox.length; i++) {
+              for (var i = 0; i < nLength; i++) {
                 elBox[i].style.display = 'none';
               }
 
-              if (nIndex === nLastIndex) {
-                nIndex = 0
-              } else {
-                nIndex++
-              }
+              // if (nIndex === nLastIndex) {
+              //   nIndex = 0
+              // } else {
+              //   nIndex++
+              // }
 
               elBox[nIndex].style.display = 'block';
+              nIndex = (nIndex + 1) % nLength;
+
           },1000)
         }
       });
