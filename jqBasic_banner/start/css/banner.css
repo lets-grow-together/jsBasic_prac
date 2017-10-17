@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* Reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,p,table,th,td,form,fieldset,legend,textarea,input,select,textarea,button,article,aside,dialog,footer,header,section,footer,nav,figure,main{margin:0;padding:0;}
+article,aside,dialog,footer,header,section,footer,nav,figure,main{display:block;}
+html,body{height:100%;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;}
+body,input,select,textarea,button{font-family:'Apple SD Gothic Neo', '돋움', Dotum, sans-serif; font-size:12px;} 
+fieldset,li,img{border:0;vertical-align:top;}
+ul,ol{list-style:none;}
+button{overflow:visible;border:0;background-color:transparent;cursor:pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+address,caption,em{font-style:normal;}
+a,a:focus,a:active,a:hover{text-decoration:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+a{color:#666;text-decoration:none;}
+a:hover{color:#333;}
+a.selected{color:#333;}
+
+.clearfix{*zoom:1;}
+.clearfix:before,
+.clearfix:after{content:'';display:table;}
+.clearfix:after{clear:both;}
+
+/* Contents */
+#content{width:1020px;margin:0 auto;padding:40px 0;}
+
+.banner{position:relative;overflow:hidden;width:600px;margin:0 auto;}
+.banner img{width:100%;height:auto;}
+.banner ul{width:600px;height:360px;margin-bottom:10px;}
+.banner li{position:absolute;width:600px;height:360px;}
+.banner button{width:40px;height:30px;border:1px solid #666;background-color:#000;cursor:pointer;color:white;}
+.banner .btn_prev{position:absolute;top:50%;margin-top:-15px;left:0px;}
+.banner .btn_next{position:absolute;top:50%;margin-top:-15px;right:0px;}
