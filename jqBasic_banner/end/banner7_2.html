@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/banner.css">
+</head>
+<body>
+    <div id="content">
+        <div class="banner" id="banner1">
+            <ul>
+                <li><img src="img/img600x360_01.gif" alt=""></li>
+                <li><img src="img/img600x360_02.gif" alt=""></li>
+                <li><img src="img/img600x360_03.gif" alt=""></li>
+                <li><img src="img/img600x360_04.gif" alt=""></li>
+                <li><img src="img/img600x360_05.gif" alt=""></li>
+            </ul>
+            <button type="button" class="btn_prev">이전</button>
+            <button type="button" class="btn_next">다음</button>
+            <button type="button" class="btn_play">Play</button>
+            <button type="button" class="btn_stop">Stop</button>
+            <div class="indicator">
+                <a href="#" class="on">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+        </div>
+
+        <div class="banner type" id="banner2">
+            <ul>
+                <li><img src="img/img300x180_01.gif" alt=""></li>
+                <li><img src="img/img300x180_02.gif" alt=""></li>
+                <li><img src="img/img300x180_03.gif" alt=""></li>
+                <li><img src="img/img300x180_04.gif" alt=""></li>
+                <li><img src="img/img300x180_05.gif" alt=""></li>
+                <li><img src="img/img300x180_06.gif" alt=""></li>
+                <li><img src="img/img300x180_07.gif" alt=""></li>
+            </ul>
+            <button type="button" class="btn_prev">이전</button>
+            <button type="button" class="btn_next">다음</button>
+            <button type="button" class="btn_play">Play</button>
+            <button type="button" class="btn_stop">Stop</button>
+            <div class="indicator">
+                <a href="#" class="on">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script>
+        /**
+        0. 기능 테스트
+            * li(배너 아이템)을 나란히 위치시키고,
+            * 다음 버튼을 누르면 각각의 li의 left값을 변경하는 애니메이션을 적용해봅니다.
+
+        1. 레이아웃 확인
+            * 이전, 다음 버튼
+            * 배너영역 css 확인
+                - .banner에 overflow:hidden
+                - li에 position:absolute;
+
+        2. 첫 번째 이미지만 화면에 보이고, 나머지 이미지들은 화면에 보이지 않게 배너 영역의 우측으로 이동시킨다.
+
+        3. 다음 버튼을 누르면 현재 보고있는 이미지와 다음 이미지를 나란히 왼쪽으로 애니메이션하여 두 번째 이미지를 보여줍니다.
+        3_1. 다음 버튼을 눌렀을 때, 계속해서 다음 이미지를 보여줍니다.
+        3_2. 보고있는 이미지가 마지막 이미지일 경우, 다음 이미지는 첫 번째 이미지를 보여줍니다.(무한롤링)
+        3_3. 다음 이미지를 움직이기 전에 left의 위치를 화면 우측으로 이동시킨 후, 애니메이션 합니다.
+
+        4. 이전 버튼을 누르면 이전 이미지를 보여줍니다.
+        4_1. 보고있는 이미지가 첫 번째 이미지일 경우, 마지막 이미지를 보여줍니다.
+        4_2. 이전 이미지를 움직이기 전에 left의 위치를 화면 좌측으로 이동시킨 후, 애니메이션 합니다.
+
+        5. 이전, 다음 버튼을 연속으로 누르면 애니메이션이 겹치므로
+            * 모션 중인지 확인하여, 모션 중이면 버튼이 동작하지 않도록 처리합니다.
+
+        6. 리팩토링
+
+        7. 기능추가 : play, stop 버튼을 추가하고, 기능을 구현합니다.
+        7_1. 기능추가 : 인디케이터를 구현합니다.
+        7_2. 배너 추가생성 : 하단에 300x180 사이즈에 이미지가 7개인 배너를 생성해봅니다.
+        */
+
+        var smplBanner = function(selector, speed) {
+            var welBanner         = $(selector),
+                welItems          = welBanner.find('li'),
+                welBtnNext        = welBanner.find('.btn_next'),
+                welBtnPrev        = welBanner.find('.btn_prev'),
+                welBtnPlay        = welBanner.find('.btn_play'),
+                welBtnStop        = welBanner.find('.btn_stop'),
+                welIndicator      = welBanner.find('.indicator'),
+                welIndicatorItems = welIndicator.find('a');
+
+            var nItemWidth    = welItems.eq(0).width(),
+                nItemsLength  = welItems.length,
+                nSpeed        = (speed !== undefined ) ? speed : 700,
+                nCurrentIndex = 0,
+                bIsMoving     = false,
+                oTimer        = null;
+
+            // 첫 번째 아이템을 제외한 나머지 아이템들 위치 이동
+            welItems.eq(0).siblings().css('left', nItemWidth);
+
+            // 이벤트 핸들러 등록
+            welBtnNext.on('click', function() {
+                var nNextIndex = (nCurrentIndex < nItemsLength - 1)
+                    ? nCurrentIndex + 1
+                    : 0;
+
+                showItem(nNextIndex, 1);
+            });
+
+            welBtnPrev.on('click', function() {
+                var nNextIndex = (nCurrentIndex > 0)
+                    ? nCurrentIndex - 1
+                    : nItemsLength - 1;
+
+                showItem(nNextIndex, -1);
+            });
+
+            welBtnPlay.on('click', function() {
+                if(oTimer === null) {
+                    oTimer = setInterval(function() {
+                        welBtnNext.trigger('click');
+                    }, 3000);
+                }
+            });
+
+            welBtnStop.on('click', function() {
+                clearInterval(oTimer);
+                oTimer = null;
+            });
+
+            welIndicator.on('click', 'a', function(e) {
+                e.preventDefault();
+                var nNextIndex = $(this).index();
+
+                // 현재 인덱스와 클릭한 인디케이터의 인덱스와 같지않을 경우,
+                // 클릭한 인디게이터 인덱스가 더 크면 1(왼쪽이동), 아니면 -1(오른쪽 이동)
+                if(nCurrentIndex !== nNextIndex) {
+                    var nCheckDirection = (nCurrentIndex > nNextIndex) ? -1 : 1;
+                    showItem(nNextIndex, nCheckDirection);
+                }
+            });
+
+            /*
+                function
+                @param nIdx 다음에 보여질 이미지 인덱스
+                @param nDirection 1이면 왼쪽으로, -1이면 오른쪽으로 이미지 이동
+            */
+            var showItem = function(nIdx, nDirection) {
+                if(!bIsMoving) {
+                    bIsMoving = true;
+
+                    welItems.eq(nCurrentIndex).animate({'left': -nDirection * nItemWidth}, nSpeed);
+                    welItems.eq(nIdx).css('left', nDirection * nItemWidth).animate({'left': 0}, nSpeed, function() {
+                        bIsMoving = false;
+                    });
+
+                    nCurrentIndex = nIdx;
+                    welIndicatorItems.eq(nCurrentIndex).addClass('on').siblings().removeClass('on');
+                }
+            }
+        };
+
+        $(document).ready(function() {
+            smplBanner('#banner1');
+            smplBanner('#banner2', 200);
+        });
+    </script>
+</body>
+</html>

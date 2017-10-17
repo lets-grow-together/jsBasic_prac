@@ -31,3 +31,10 @@ a.selected{color:#333;}
 .banner button{width:40px;height:30px;border:1px solid #666;background-color:#000;cursor:pointer;color:white;}
 .banner .btn_prev{position:absolute;top:50%;margin-top:-15px;left:0px;}
 .banner .btn_next{position:absolute;top:50%;margin-top:-15px;right:0px;}
+.banner.type{width:300px;margin-top:20px;}
+.banner.type ul{width:300px;height:180px;}
+.banner.type li{width:300px;height:180px;}
+
+.indicator{margin-top:10px;}
+.indicator a{display:inline-block;width:20px;height:20px;line-height:20px;border:1px solid #000;background-color:#64c7b4;text-align:center; color:#000;}
+.indicator a.on{background-color:#000;color:#fff;}
