@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    // 메서드 호출 패턴
+
+    // var name = 'The Window';
+
+    // var obj = {
+    //     name: 'My Object',
+
+    //     getName: function() {
+    //         console.log( "getName's this : " + this );
+    //         console.log( "getName's this.name : " + this.name );
+    //     }
+    // };
+
+    // obj.getName();
+
+    // console.log( this );
+    // console.log( name );
+    // console.log( this.name );
+    // console.log( window.name );
+
+    // 함수호출 패턴
+
+    // function outer() {
+    //     console.log("outer's this : " + this);
+    // }
+
+    // outer();
+
+    // console.log( outer );
+    // console.log( window.outer );
+
+    // function outer() {
+    //     console.log("outer's this : " + this);
+
+    //     function inner() {
+    //         console.log("inner's this : " + this);
+    //     }
+    //     inner();
+    // }
+
+    // outer();
+
+    // var name = 'The Window';
+
+    // var object = {
+    //     name: 'My Object',
+
+    //     getName: function() {
+    //         console.log("getName's this.name : " + this.name);
+
+    //         return function() {
+    //             console.log("getName's inside function's this.name : " + this.name);
+    //         }
+    //     }
+    // };
+
+    // object.getName()();
+
+    var name = 'The Window';
+
+    var obj = {
+        name: 'My Object',
+
+        getName: function() {
+            var that = this;                // this 유지 : that === this === obj
+
+            return function() {
+                console.log(that.name);
+            }
+        }
+    };
+
+    obj.getName()();
+
+    
+    </script>
+</body>
+</html>

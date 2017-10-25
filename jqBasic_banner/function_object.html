@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // function createAnimal(name, age, job) {
+        //     var o = new Object();
+        //     o.name = name;
+        //     o.age = age;
+        //     o.job = job;
+        //     o.sayName = function() {
+        //         console.log(this.name);
+        //     };
+
+        //     return o;
+        // }
+
+        // var animal1 = createAnimal('MS', 21, 'TMT');
+        // var animal2 = createAnimal('JY', 22, 'Smart');
+
+        // function Animal(name, age, job) {
+        //     this.name = name;
+        //     this.age = age;
+        //     this.job = job;
+
+        //     this.sayName = function() {
+        //         console.log(this.name);
+        //     }
+        // }
+
+        // var animal1 = new Animal('MS', 21, 'TMT');
+        // var animal2 = new Animal('JY', 22, 'Smart');
+
+        function Animal(name, age, job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+        }
+
+        Animal.prototype.sayName = function() {
+            console.log(this.name);
+        }
+
+        var animal1 = new Animal('MS', 21, 'TMT');
+        var animal2 = new Animal('JY', 22, 'Smart');
+
+        console.log(animal1.sayName());
+        console.log(animal2.sayName());
+        console.log(animal1.sayName == animal2.sayName);
+    </script>
+</body>
+</html>

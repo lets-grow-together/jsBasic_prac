@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/banner.css">
+</head>
+<body>
+    <div id="content">
+        <div class="banner" id="banner1">
+            <ul>
+                <li><img src="img/img600x360_01.gif" alt=""></li>
+                <li><img src="img/img600x360_02.gif" alt=""></li>
+                <li><img src="img/img600x360_03.gif" alt=""></li>
+                <li><img src="img/img600x360_04.gif" alt=""></li>
+                <li><img src="img/img600x360_05.gif" alt=""></li>
+            </ul>
+            <button type="button" class="btn_prev">이전</button>
+            <button type="button" class="btn_next">다음</button>
+            <button type="button" class="btn_play">Play</button>
+            <button type="button" class="btn_stop">Stop</button>
+            <div class="indicator">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+            </div>
+        </div>
+
+        <div class="banner type" id="banner2">
+            <ul>
+                <li><img src="img/img300x180_01.gif" alt=""></li>
+                <li><img src="img/img300x180_02.gif" alt=""></li>
+                <li><img src="img/img300x180_03.gif" alt=""></li>
+                <li><img src="img/img300x180_04.gif" alt=""></li>
+                <li><img src="img/img300x180_05.gif" alt=""></li>
+                <li><img src="img/img300x180_06.gif" alt=""></li>
+                <li><img src="img/img300x180_07.gif" alt=""></li>
+            </ul>
+            <button type="button" class="btn_prev">이전</button>
+            <button type="button" class="btn_next">다음</button>
+            <button type="button" class="btn_play">Play</button>
+            <button type="button" class="btn_stop">Stop</button>
+            <div class="indicator">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">7</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script>
+        var SmplBanner = function(sTarget, htOptions) {
+            this.welBanner = $(sTarget);
+            $.extend(this._htOptions, htOptions || {});
+
+            this.init();
+        }
+
+        SmplBanner.prototype = {
+            _htOptions: {
+                nCurrentIndex: 0,
+                nSpeed       : 700
+            },
+            init: function() {
+                this._assignElements();
+                this._initialize();
+                this._attachEventHandlers();
+            },
+            _assignElements: function() {
+                this.welItems          = this.welBanner.find('li');
+                this.welBtnNext        = this.welBanner.find('.btn_next');
+                this.welBtnPrev        = this.welBanner.find('.btn_prev');
+                this.welBtnPlay        = this.welBanner.find('.btn_play');
+                this.welBtnStop        = this.welBanner.find('.btn_stop');
+                this.welIndicator      = this.welBanner.find('.indicator');
+                this.welIndicatorItems = this.welIndicator.find('a');
+            },
+            _initialize: function() {
+                this.nItemWidth    = this.welItems.eq(0).width();
+                this.nItemLength   = this.welItems.length;
+                this.nSpeed        = this._htOptions.nSpeed;
+                this.nCurrentIndex = this._htOptions.nCurrentIndex;
+                this.bIsMoving     = false;
+                this.oTimer        = null;
+
+                // 첫 번째 아이템을 제외한 나머지 리스트들 위치 이동
+                this.welItems.eq(this.nCurrentIndex).siblings().css('left', this.nItemWidth);
+                // 인디케이터 초기화
+                this.welIndicatorItems.eq(this.nCurrentIndex).addClass('on');
+            },
+            _attachEventHandlers: function() {
+                var that = this;
+
+                this.welBtnNext.on('click', function() {
+                    var nNextIndex = (that.nCurrentIndex < that.nItemLength - 1)
+                        ? that.nCurrentIndex + 1
+                        : 0;
+
+                    that._showItem(nNextIndex, 1);
+                });
+
+                this.welBtnPrev.on('click', function() {
+                    var nNextIndex = (that.nCurrentIndex > 0)
+                        ? that.nCurrentIndex - 1
+                        : that.nItemLength - 1;
+
+                    that._showItem(nNextIndex, -1);
+                });
+
+                this.welBtnPlay.on('click', function() {
+                    if(that.oTimer === null) {
+                        that.oTimer = setInterval(function() {
+                            that.welBtnNext.trigger('click')
+                        }, 3000);
+                    }
+                });
+
+                this.welBtnStop.on('click', function() {
+                    clearInterval(that.oTimer);
+                    that.oTimer = null;
+                });
+
+                this.welIndicator.on('click', 'a', function(e) {
+                    e.preventDefault();
+                    var nNextIndex = $(this).index();
+
+                    // 현재 인덱스와 클릭한 인디게이터 인덱스와 같지않을 경우,
+                    // 클릭한 인디게이터 인덱스가 더 크면 1(왼쪽이동), 아니면 -1(오른쪽이동)
+                    if (that.nCurrentIndex !== nNextIndex) {
+                        var nCheckDirection = (that.nCurrentIndex > nNextIndex) ? -1 : 1;
+                        that._showItem(nNextIndex, nCheckDirection);
+                    }
+                });
+            },
+            /*
+            * function 
+            * @param nIdx 다음에 보여질 이미지 인덱스
+            * @param nDirection 1이면 왼쪽으로, -1이면 오른쪽으로 이미지 이동
+            */
+            _showItem: function(nIdx, nDirection) {
+                var that = this;
+
+                if(!this.bIsMoving) {
+                    this.bIsMoving = true;
+
+                    this.welItems.eq(this.nCurrentIndex).animate({'left': -nDirection * this.nItemWidth}, this.nSpeed);
+                    this.welItems.eq(nIdx).css('left', nDirection * this.nItemWidth).animate({'left': 0}, this.nSpeed, function() {
+                        that.bIsMoving = false;
+                    });
+
+                    this.nCurrentIndex = nIdx;
+                    this.welIndicatorItems.eq(this.nCurrentIndex).addClass('on').siblings().removeClass('on');
+                }
+            }
+        }
+
+        $(document).ready(function() {
+            var banner1 = new SmplBanner('#banner1'),
+                banner2 = new SmplBanner('#banner2', {nCurrentIndex: 2, nSpeed: 300});
+        });
+    </script>
+</body>
+</html>
