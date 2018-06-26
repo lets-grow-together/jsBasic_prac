@@ -58,17 +58,18 @@
     <script src="js/jquery-1.11.0.min.js"></script>
     <script>
         var SmplBanner = function(sTarget, htOptions) {
+            var htDefault = {
+                nCurrentIndex: 0,
+                nSpeed       : 700
+            };
+            
             this.welBanner = $(sTarget);
-            $.extend(this._htOptions, htOptions || {});
+            this._htOptions = $.extend(htDefault, htOptions || {});
 
             this.init();
         }
 
         SmplBanner.prototype = {
-            _htOptions: {
-                nCurrentIndex: 0,
-                nSpeed       : 700
-            },
             init: function() {
                 this._assignElements();
                 this._initialize();
@@ -171,8 +172,8 @@
         }
 
         $(document).ready(function() {
-            var banner1 = new SmplBanner('#banner1'),
-                banner2 = new SmplBanner('#banner2', {nCurrentIndex: 2, nSpeed: 300});
+            var banner1 = new SmplBanner('#banner1', {nCurrentIndex: 2, nSpeed: 300}),
+                banner2 = new SmplBanner('#banner2');
         });
     </script>
 </body>
